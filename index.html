@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GitHub Follower Analyzer</title>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Syne:wght@700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="grid-bg"></div>
+<div class="hero-glow"></div>
+
+<main>
+  <header>
+    <div class="logo-tag"><span class="dot"></span> GitHub Follower Analyzer</div>
+    <h1>Who's Not<br>Following Back?</h1>
+    <p class="subtitle"> Enter your username — instantly see who isn't following you back and who's waiting.</p>
+  </header>
+
+  <div class="search-box">
+    <div class="input-row">
+      <span class="input-prefix">@</span>
+      <input type="text" id="usernameInput" placeholder="github-username" autocomplete="off" spellcheck="false" />
+      <button class="btn" onclick="analyze()" id="analyzeBtn">Analyze →</button>
+    </div>
+    <div id="status"></div>
+    <div class="warning-note" id="rateNote" style="display:none">
+      ⚡ GitHub API: 60 requests/hr without login. Large accounts (500+ follows) may hit rate limit.
+    </div>
+  </div>
+
+  <div id="results">
+    <div class="profile-card" id="profileCard"></div>
+    <div class="stats-row" id="statsRow"></div>
+    <div class="columns">
+      <div class="column-card">
+        <div class="column-header">
+          <div class="col-title"><span class="col-dot orange"></span>Those who didn't follow back.</div>
+          <span class="count-badge badge-orange" id="notFollowingBackCount">0</span>
+        </div>
+        <div class="filter-bar">
+          <span style="color:var(--muted);font-size:12px">🔍</span>
+          <input class="filter-input" type="text" placeholder="Search..." oninput="filterList('notFollowingBack', this.value)" />
+        </div>
+        <div class="user-list" id="notFollowingBack"></div>
+      </div>
+      <div class="column-card">
+        <div class="column-header">
+          <div class="col-title"><span class="col-dot blue"></span>Those who follow you but you don't follow back.</div>
+          <span class="count-badge badge-blue" id="notFollowedBackCount">0</span>
+        </div>
+        <div class="filter-bar">
+          <span style="color:var(--muted);font-size:12px">🔍</span>
+          <input class="filter-input" type="text" placeholder="Search..." oninput="filterList('notFollowedBack', this.value)" />
+        </div>
+        <div class="user-list" id="notFollowedBack"></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<script src="app.js"></script>
+</body>
+</html>

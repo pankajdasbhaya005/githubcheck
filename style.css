@@ -1,0 +1,527 @@
+/*VARIABLES & RESET */
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  /* backgrounds */
+  --bg: #0d0f14;
+  --surface: #141720;
+  --surface2: #1a1e2d;
+
+  /* borders */
+  --border: #252a3a;
+  --border2: #2f3650;
+
+  /* text */
+  --text: #e8eaf0;
+  --muted: #6b7394;
+
+  /* colors */
+  --accent: #4ade80;
+  --accent2: #22c55e;
+  --danger: #f87171;
+  --warn: #fb923c;
+  --blue: #60a5fa;
+  --purple: #a78bfa;
+}
+
+
+/* BODY & BACKGROUND */
+
+body {
+  font-family: 'JetBrains Mono', monospace;
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+}
+
+/* peeche wali grid lines */
+.grid-bg {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  background-image:
+    linear-gradient(rgba(74, 222, 128, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(74, 222, 128, 0.03) 1px, transparent 1px);
+  background-size: 40px 40px;
+}
+
+/* upar wala green glow effect */
+.hero-glow {
+  position: fixed;
+  top: -200px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 600px;
+  height: 400px;
+  pointer-events: none;
+  z-index: 0;
+  background: radial-gradient(ellipse, rgba(74, 222, 128, 0.08) 0%, transparent 70%);
+}
+
+
+/*LAYOUT */
+
+main {
+  position: relative;
+  z-index: 1;
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 3rem 1.5rem 4rem;
+}
+
+header {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+
+/*HEADER — LOGO, TITLE, SUBTITLE */
+
+/* upar wala green pill badge */
+.logo-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(74, 222, 128, 0.08);
+  border: 1px solid rgba(74, 222, 128, 0.2);
+  border-radius: 999px;
+  padding: 4px 16px;
+  font-size: 12px;
+  color: var(--accent);
+  letter-spacing: 0.08em;
+  margin-bottom: 1.5rem;
+}
+
+/* badge ke andar blinking dot */
+.dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--accent);
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0.3; }
+}
+
+/* main heading */
+h1 {
+  font-family: 'Syne', sans-serif;
+  font-size: clamp(2rem, 5vw, 3.2rem); /* screen size ke hisaab se adjust hota hai */
+  font-weight: 800;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  margin-bottom: 0.75rem;
+
+  /* gradient text effect */
+  background: linear-gradient(135deg, #e8eaf0 0%, #4ade80 50%, #60a5fa 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.subtitle {
+  font-size: 13px;
+  color: var(--muted);
+  line-height: 1.6;
+  max-width: 480px;
+  margin: 0 auto;
+}
+
+
+/*SB */
+
+.search-box {
+  background: var(--surface);
+  border: 1px solid var(--border2);
+  border-radius: 16px;
+  padding: 1.5rem;
+  margin-bottom: 2rem;
+  transition: border-color 0.2s;
+}
+
+/* jab input focus ho toh box glow kare */
+.search-box:focus-within {
+  border-color: rgba(74, 222, 128, 0.4);
+  box-shadow: 0 0 0 4px rgba(74, 222, 128, 0.05);
+}
+
+/* @ symbol aur input aur button ek line mein */
+.input-row {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+
+.input-prefix {
+  font-size: 20px;
+  color: var(--muted);
+  flex-shrink: 0;
+}
+
+input[type="text"] {
+  flex: 1;
+  background: transparent;
+  border: none;
+  outline: none;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 16px;
+  color: var(--text);
+  min-width: 0;
+}
+
+input[type="text"]::placeholder {
+  color: var(--muted);
+}
+
+
+/*
+   BUTTONS */
+
+/* main green button */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--accent2);
+  color: #0a1a0f;
+  border: none;
+  border-radius: 10px;
+  padding: 10px 20px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.15s;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.btn:hover {
+  background: var(--accent);
+  transform: translateY(-1px);
+}
+
+.btn:active {
+  transform: translateY(0);
+}
+
+.btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* outline wala button — "View on GitHub" ke liye */
+.btn-outline {
+  background: transparent;
+  color: var(--muted);
+  border: 1px solid var(--border2);
+  font-size: 12px;
+  padding: 6px 14px;
+  border-radius: 8px;
+  text-decoration: none;
+}
+
+.btn-outline:hover {
+  color: var(--text);
+  border-color: var(--border);
+  background: var(--surface2);
+}
+
+
+/*
+   STATUS BAR (loading / error) */
+
+#status {
+  display: none; /* by default hidden, JS show karta hai */
+  align-items: center;
+  gap: 10px;
+  padding: 12px 16px;
+  border-radius: 10px;
+  font-size: 13px;
+  margin-top: 1rem;
+}
+
+.status-loading {
+  background: rgba(96, 165, 250, 0.08);
+  border: 1px solid rgba(96, 165, 250, 0.2);
+  color: var(--blue);
+  display: flex !important;
+}
+
+.status-error {
+  background: rgba(248, 113, 113, 0.08);
+  border: 1px solid rgba(248, 113, 113, 0.2);
+  color: var(--danger);
+  display: flex !important;
+}
+
+/* loading ke waqt ghoomne wala circle */
+.spinner {
+  width: 14px;
+  height: 14px;
+  border: 2px solid rgba(96, 165, 250, 0.2);
+  border-top-color: var(--blue);
+  border-radius: 50%;
+  animation: spin 0.7s linear infinite;
+  flex-shrink: 0;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* rate limit warning */
+.warning-note {
+  background: rgba(251, 146, 60, 0.06);
+  border: 1px solid rgba(251, 146, 60, 0.15);
+  border-radius: 10px;
+  padding: 10px 16px;
+  font-size: 12px;
+  color: var(--warn);
+  margin-top: 8px;
+  line-height: 1.5;
+}
+
+
+/*
+   RESULTS SECTION */
+
+#results {
+  display: none; /* JS show karta hai analyze ke baad */
+}
+
+/* user ka profile card upar */
+.profile-card {
+  background: var(--surface);
+  border: 1px solid var(--border2);
+  border-radius: 16px;
+  padding: 1.25rem 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1rem;
+  flex-wrap: wrap;
+}
+
+.profile-card img {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  border: 2px solid var(--border2);
+}
+
+.profile-info {
+  flex: 1;
+}
+
+.profile-info h2 {
+  font-family: 'Syne', sans-serif;
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.profile-info p {
+  font-size: 12px;
+  color: var(--muted);
+  margin-top: 4px;
+}
+
+
+/*
+   STATS CHIPS (followers, following etc.) */
+
+.stats-row {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-bottom: 1.5rem;
+}
+
+/* base chip style */
+.stat-chip {
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 6px 14px;
+  font-size: 12px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.stat-chip strong {
+  font-weight: 600;
+}
+
+/* alag alag colors ke chips */
+.stat-chip.green  { border-color: rgba(74, 222, 128, 0.2); background: rgba(74, 222, 128, 0.05); color: var(--accent); }
+.stat-chip.blue   { border-color: rgba(96, 165, 250, 0.2); background: rgba(96, 165, 250, 0.05); color: var(--blue); }
+.stat-chip.orange { border-color: rgba(251, 146, 60, 0.2); background: rgba(251, 146, 60, 0.05); color: var(--warn); }
+.stat-chip.purple { border-color: rgba(167, 139, 250, 0.2); background: rgba(167, 139, 250, 0.05); color: var(--purple); }
+
+
+/*TWO COLUMN LAYOUT */
+
+.columns {
+  display: grid;
+  grid-template-columns: 1fr 1fr; /* do barabar columns */
+  gap: 1.5rem;
+}
+
+/* mobile par ek column */
+@media (max-width: 640px) {
+  .columns {
+    grid-template-columns: 1fr;
+  }
+}
+
+
+/*user list cards */
+
+.column-card {
+  background: var(--surface);
+  border: 1px solid var(--border2);
+  border-radius: 16px;
+  overflow: hidden;
+}
+
+/* card ka header — title aur count */
+.column-header {
+  padding: 1rem 1.25rem;
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.col-title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+/* colored dot title ke saath */
+.col-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+}
+
+.col-dot.orange { background: var(--warn); }
+.col-dot.blue   { background: var(--blue); }
+
+/* count badge — right side par number */
+.count-badge {
+  font-size: 11px;
+  padding: 3px 10px;
+  border-radius: 999px;
+  font-weight: 600;
+}
+
+.badge-orange { background: rgba(251, 146, 60, 0.12); color: var(--warn); }
+.badge-blue   { background: rgba(96, 165, 250, 0.12); color: var(--blue); }
+
+/* search bar list ke upar */
+.filter-bar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 1.25rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.filter-input {
+  flex: 1;
+  background: transparent;
+  border: none;
+  outline: none;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px;
+  color: var(--text);
+  min-width: 0;
+}
+
+.filter-input::placeholder {
+  color: var(--muted);
+}
+
+/* scrollable user list */
+.user-list {
+  max-height: 480px;
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: var(--border2) transparent;
+}
+
+.user-list::-webkit-scrollbar       { width: 4px; }
+.user-list::-webkit-scrollbar-thumb { background: var(--border2); border-radius: 2px; }
+
+/* ek user row — click karne se GitHub profile khulti hai */
+.user-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 1.25rem;
+  border-bottom: 1px solid var(--border);
+  text-decoration: none;
+  color: inherit;
+  transition: background 0.15s;
+  cursor: pointer;
+}
+
+.user-item:last-child {
+  border-bottom: none;
+}
+
+.user-item:hover {
+  background: var(--surface2);
+}
+
+.user-item:hover .user-name {
+  color: var(--accent); /* hover par green ho jaata hai name */
+}
+
+.user-item img {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: 1px solid var(--border);
+  flex-shrink: 0;
+}
+
+.user-name {
+  font-size: 13px;
+  font-weight: 500;
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis; /* lamba naam ... se cut hoga */
+  white-space: nowrap;
+  transition: color 0.15s;
+}
+
+.arrow-icon {
+  font-size: 12px;
+  color: var(--muted);
+  flex-shrink: 0;
+}
+
+/* jab list empty ho */
+.empty-state {
+  padding: 2.5rem 1rem;
+  text-align: center;
+  color: var(--muted);
+  font-size: 13px;
+}
