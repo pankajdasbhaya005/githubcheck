@@ -11,16 +11,10 @@
   --bg: #0d0f14;
   --surface: #141720;
   --surface2: #1a1e2d;
-
-  /* borders */
   --border: #252a3a;
   --border2: #2f3650;
-
-  /* text */
   --text: #e8eaf0;
   --muted: #6b7394;
-
-  /* colors */
   --accent: #4ade80;
   --accent2: #22c55e;
   --danger: #f87171;
@@ -183,9 +177,7 @@ input[type="text"]::placeholder {
 }
 
 
-/*
-   BUTTONS */
-
+/*BUTTONS */
 /* main green button */
 .btn {
   display: inline-flex;
@@ -238,8 +230,7 @@ input[type="text"]::placeholder {
 }
 
 
-/*
-   STATUS BAR (loading / error) */
+/*STATUS BAR (loading / error) */
 
 #status {
   display: none; /* by default hidden, JS show karta hai */
@@ -255,14 +246,14 @@ input[type="text"]::placeholder {
   background: rgba(96, 165, 250, 0.08);
   border: 1px solid rgba(96, 165, 250, 0.2);
   color: var(--blue);
-  display: flex !important;
+  display: flex ;
 }
 
 .status-error {
   background: rgba(248, 113, 113, 0.08);
   border: 1px solid rgba(248, 113, 113, 0.2);
   color: var(--danger);
-  display: flex !important;
+  display: flex ;
 }
 
 /* loading ke waqt ghoomne wala circle */
@@ -339,7 +330,6 @@ input[type="text"]::placeholder {
 
 /*
    STATS CHIPS (followers, following etc.) */
-
 .stats-row {
   display: flex;
   gap: 8px;
@@ -371,7 +361,6 @@ input[type="text"]::placeholder {
 
 
 /*TWO COLUMN LAYOUT */
-
 .columns {
   display: grid;
   grid-template-columns: 1fr 1fr; /* do barabar columns */
@@ -385,9 +374,7 @@ input[type="text"]::placeholder {
   }
 }
 
-
 /*user list cards */
-
 .column-card {
   background: var(--surface);
   border: 1px solid var(--border2);
@@ -412,7 +399,6 @@ input[type="text"]::placeholder {
   font-weight: 600;
 }
 
-/* colored dot title ke saath */
 .col-dot {
   width: 8px;
   height: 8px;
@@ -457,7 +443,7 @@ input[type="text"]::placeholder {
   color: var(--muted);
 }
 
-/* scrollable user list */
+/* scrollable list */
 .user-list {
   max-height: 480px;
   overflow-y: auto;
@@ -468,7 +454,7 @@ input[type="text"]::placeholder {
 .user-list::-webkit-scrollbar       { width: 4px; }
 .user-list::-webkit-scrollbar-thumb { background: var(--border2); border-radius: 2px; }
 
-/* ek user row — click karne se GitHub profile khulti hai */
+/* github mein profile khulwane ke liye */
 .user-item {
   display: flex;
   align-items: center;
@@ -490,7 +476,7 @@ input[type="text"]::placeholder {
 }
 
 .user-item:hover .user-name {
-  color: var(--accent); /* hover par green ho jaata hai name */
+  color: var(--accent); /* hover karne par naam green ho jayega */
 }
 
 .user-item img {
@@ -524,4 +510,21 @@ input[type="text"]::placeholder {
   text-align: center;
   color: var(--muted);
   font-size: 13px;
+}
+
+
+footer {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+  padding: 1.5rem;
+  font-size: 13px;
+  color: var(--muted);
+  border-top: 1px solid var(--border);
+  margin-top: 3rem;
+}
+
+footer span {
+  color: var(--accent); 
+  font-weight: 600;
 }
