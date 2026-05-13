@@ -45,7 +45,7 @@ A simple tool where you enter any GitHub username and instantly see:
 
 ## Live Demo
 
-🔗
+🔗-https://githubcheck-five.vercel.app/
 
 ---
 
