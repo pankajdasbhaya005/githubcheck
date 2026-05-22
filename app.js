@@ -84,9 +84,9 @@ async function analyze() {
     const userRes = await fetch(`${API}/users/${encodeURIComponent(username)}`);
 
     if (!userRes.ok) {
-      if (userRes.status === 404) throw new Error("User nahi mila. Username check karo.");
-      if (userRes.status === 403) throw new Error("GitHub ka rate limit hit ho gaya. Kuch minutes baad try karo.");
-      throw new Error(`Kuch gadbad hui: ${userRes.status}`);
+      if (userRes.status === 404) throw new Error("can't find username.pls check username.");
+      if (userRes.status === 403) throw new Error("github rate limit hit,please try after some minutes.");
+      throw new Error(`something went wrong: ${userRes.status}`);
     }
 
     const user = await userRes.json();
