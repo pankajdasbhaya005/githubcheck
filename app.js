@@ -1,4 +1,3 @@
-// github API ka base URL
 const API = "https://api.github.com";
 
 // dono lists ka data yahan store hoga
@@ -38,7 +37,7 @@ function hideStatus() {
 
 
 
-// API FETCH — sare pages ek saath lao
+// API FETCH 
 
 
 // GitHub ek baar mein max 100 users deta hai
@@ -176,7 +175,7 @@ function renderList(id, users) {
     return;
   }
 
-  // har user ek clickable link hai — direct GitHub profile khulega
+  // har user ek clickable link hai 
   container.innerHTML = users.map(u => `
     <a class="user-item" href="https://github.com/${u.login}" target="_blank" rel="noopener noreferrer">
       <img src="${u.avatar_url}&s=64" alt="${u.login}" loading="lazy" />
